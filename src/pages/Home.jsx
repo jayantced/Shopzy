@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Section from "../components/Section";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -21,10 +22,15 @@ export default function Home() {
 
   console.log(products)
   return (
-    <ul>
-      {products.map((product) => (
-        <li key={product.id} id={product.id}>{product.title}</li>
-      ))}
-    </ul>
+    <>
+    <Section title="Big Discount"
+        bgColor="#f6f9fc"
+        productItems={discoutProducts} />
+        <Section
+        title="New Arrivals"
+        bgColor="white"
+        productItems={newArrivalData}
+      />
+    </>
   );
 }
