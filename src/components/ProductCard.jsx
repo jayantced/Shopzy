@@ -1,12 +1,16 @@
 import { Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ProductCard({ productItem }) {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  // console.log(productItem.id);
+
+  // const params = useParams();
   const handelClick = () => {
-    navigate(`/shop/${productItem.id}`);
+    // navigate(`/shop/${productItem.title}`);
   };
 
   const handelAdd = () => {
@@ -15,6 +19,7 @@ export default function ProductCard({ productItem }) {
 
   return (
     <Col md={3} sm={5} xs={10} className="product mtop">
+      <Link to={`/${productItem.id}`}>
       <img src={productItem.image} />
       <div className="product-like">
         <ion-icon name="heart-outline"></ion-icon>
@@ -33,6 +38,7 @@ export default function ProductCard({ productItem }) {
           <ion-icon name="add"></ion-icon>
           </button>
       </div>
+      </Link>
     </Col>
   );
 }

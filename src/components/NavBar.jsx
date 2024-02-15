@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import "./navbar.css";
 import { NavLink } from "react-router-dom";
 // import { useSelector } from "react-redux";
 const NavBar = () => {

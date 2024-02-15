@@ -1,9 +1,10 @@
 import { Container, Row } from "react-bootstrap";
 import ProductCard from "./ProductCard";
+// import { NavLink } from "react-router-dom";
 
 export default function Section({ title, productItems }) {
 
-  console.log(productItems);
+  // console.log(productItems);
   return (
     <section>
       <Container>
