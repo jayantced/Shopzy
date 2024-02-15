@@ -247,6 +247,9 @@ button.delete ion-icon {
 }
 
 /* Navbar Section  */
+.nav-item a {
+  text-decoration: none;
+}
 .navbar {
   position: relative !important;
   background-color: white;

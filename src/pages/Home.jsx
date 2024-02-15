@@ -20,16 +20,14 @@ export default function Home() {
     fetchProducts();
   }, []);
 
-  console.log(products)
+  // console.log(products)
   return (
     <>
-    <Section title="Big Discount"
-        bgColor="#f6f9fc"
-        productItems={discoutProducts} />
-        <Section
+      <Section title="Big Discount" bgColor="#f6f9fc" productItems={products} />
+      <Section
         title="New Arrivals"
-        bgColor="white"
-        productItems={newArrivalData}
+        bgColor="#fff"
+        productItems={products}
       />
     </>
   );

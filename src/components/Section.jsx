@@ -1,8 +1,9 @@
-import React from "react";
 import { Container, Row } from "react-bootstrap";
 import ProductCard from "./ProductCard";
 
 export default function Section({ title, productItems }) {
+
+  console.log(productItems);
   return (
     <section>
       <Container>
