@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-// import { useSelector } from "react-redux";
+
 const NavBar = () => {
-  // const { cartList } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.cart);
   const [expand, setExpand] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   // fixed Header
@@ -47,12 +48,7 @@ const NavBar = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <NavLink
-              aria-label="Go to Cart Page"
-              to="/cart"
-              className="cart"
-
-            >
+            <NavLink aria-label="Go to Cart Page" to="/cart" className="cart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -79,7 +75,7 @@ const NavBar = () => {
             <Nav.Item>
               <NavLink
                 aria-label="Go to Home Page"
-                className={(isActive) => isActive ? 'navbar-a' : ''}
+                className={(isActive) => (isActive ? "navbar-a" : "")}
                 to="/"
                 onClick={() => setExpand(false)}
               >
@@ -90,7 +86,7 @@ const NavBar = () => {
             <Nav.Item>
               <NavLink
                 aria-label="Go to Shop Page"
-                className={(isActive) => isActive ? 'navbar-a' : ''}
+                className={(isActive) => (isActive ? "navbar-a" : "")}
                 to="/shop"
                 onClick={() => setExpand(false)}
               >
@@ -101,7 +97,7 @@ const NavBar = () => {
             <Nav.Item>
               <NavLink
                 aria-label="Go to Cart Page"
-                className={(isActive) => isActive ? 'navbar-a' : ''}
+                className={(isActive) => (isActive ? "navbar-a" : "")}
                 to="/cart"
                 onClick={() => setExpand(false)}
               >
@@ -125,7 +121,7 @@ const NavBar = () => {
                 aria-label="Go to Cart Page"
                 to="/cart"
                 className="cart"
-
+                data-num={items.length}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
