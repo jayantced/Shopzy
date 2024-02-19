@@ -8,6 +8,7 @@ import ErrorPage from "./pages/Error";
 import ProductDetailsPage, {
   loader as productDetailsLoader,
 } from "./pages/Product";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/shop", element: <Shop /> },
+      { path: "/cart", element: <Cart /> },
       {
         path: "/:id",
         element: <ProductDetailsPage />,

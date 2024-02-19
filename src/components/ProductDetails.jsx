@@ -1,10 +1,32 @@
+import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../store/cart-slice";
 
 export default function ProductDetails({selectedProduct}) {
 
-    // const handelAdd = () => {
-    //     //.....
-    // }
+  const dispatch = useDispatch();
+  const {id, title, price, image} = selectedProduct 
+
+  const [productCount, setProductCount] = useState(1)
+
+  const handleQuantityChange = (e) => {
+    if (e > 9) {
+      setProductCount(9)
+    } else if (e < 1) {
+      setProductCount(1)
+    } else setProductCount(e)
+  }
+    const handelAddItemToCart = () => {
+      dispatch(addItemToCart({
+        id,
+        title,
+        price,
+        quantity: +productCount,
+        image
+      }))
+      setProductCount(1)
+    }
   return (
     // <h1>Single Product Details</h1>
     <section className="product-page">
@@ -25,14 +47,16 @@ export default function ProductDetails({selectedProduct}) {
               className="qty-input"
               type="number"
               placeholder="Qty"
-            //   value={quantity}
-            //   onChange={handleQuantityChange}
+              min='0'
+              max='9'
+              value={productCount}
+              onChange={(event) => handleQuantityChange(event.target.value)}
             />
             <button
               aria-label="Add"
               type="submit"
               className="add"
-            //   onClick={() => handelAdd(selectedProduct, quantity)}
+              onClick={() => handelAddItemToCart()}
             >
               Add To Cart
             </button>
