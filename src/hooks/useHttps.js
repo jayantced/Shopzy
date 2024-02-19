@@ -1,10 +1,11 @@
-export async function fetchAvailablePlaces() {
-    const response = await fetch('https://fakestoreapi.com/products');
-    const resData = await response.json();
-  
-    if (!response.ok) {
-      throw new Error('Failed to fetch places');
-    }
-  
-    return resData.places;
+export async function fetchProducts() {
+  const response = await fetch("https://fakestoreapi.com/products");
+  const resData = await response.json();
+
+  // console.log(resData)
+
+  if (!response.ok) {
+    throw new Error('Failed to Fetch Product Data');
   }
+  return resData;
+}
