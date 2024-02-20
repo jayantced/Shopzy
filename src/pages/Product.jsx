@@ -16,7 +16,7 @@ export default function ProductDetailsPage() {
       try {
         const fetchedProducts = await fetchProducts();
 
-        setProducts(() => fetchedProducts);
+        setProducts(fetchedProducts);
       } catch (error) {
         console.log(error);
       }
@@ -38,9 +38,7 @@ export default function ProductDetailsPage() {
         product.id !== selectedProductData.id
     );
 
-    setRelatedProducts(() => {
-      return [...filteredProducts];
-    });
+    setRelatedProducts(filteredProducts);
   }, [products, selectedProductData]);
 
   return (
