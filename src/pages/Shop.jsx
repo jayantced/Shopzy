@@ -7,10 +7,7 @@ import ShopList from "../components/ShopList";
 
 export default function Shop() {
   
-  const [products, setProducts] = useState([]);
-
-
-  const [filterList, setFilterList] = useState(products);
+  const [filterList, setFilterList] = useState([]);
   // console.log(filterList)
 
   useEffect(() => {
@@ -18,7 +15,8 @@ export default function Shop() {
       try {
         const fetchedProducts = await fetchProducts();
 
-        setProducts(fetchedProducts);
+      setFilterList(fetchedProducts)
+        
       } catch (error) {
         console.log(error);
       }
@@ -27,21 +25,6 @@ export default function Shop() {
     fetchAvailableProducts();
   }, []);
   
-  useEffect(() => {
-    if (filterList === '') {
-      setFilterList(products)
-    } else {
-      setFilterList(filterList)
-    }
-  }, [products, filterList])
-
-  // useEffect(() => {
-  //   if (filterList === '') {
-      
-  //     setFilterList(() => [...products])
-  //   }
-  // }, [filterList, products])
-
   return (
     <>
       <Banner title="product" />
@@ -57,8 +40,8 @@ export default function Shop() {
           </Row>
         </Container>
         <Container>
-          {filterList.length === 0 && <h1 className="not-found">Loading !!</h1>}
-          {filterList.length && <ShopList productItems={filterList} />}
+          {!filterList && <h1 className="not-found">Loading !!</h1>}
+          {filterList && <ShopList productItems={filterList} />}
         </Container>
       </section>
     </>
