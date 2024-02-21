@@ -1,9 +1,14 @@
 import { Row } from "react-bootstrap";
-import { memo, useEffect } from "react";
 import ProductCard from "./ProductCard";
 
 const ShopList = ({ productItems }) => {
-  useEffect(() => {}, [productItems]);
+
+//   useEffect(() => {
+//     setfilteredList(productItems)
+//   }, [productItems, setfilteredList]);
+
+// setfilteredList(productItems)
+
   if (productItems.length === 0) {
     return <h1 className="not-found">Loading !!</h1>;
   }
