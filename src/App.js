@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Shop from "./pages/Shop";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/Error";
@@ -9,6 +9,7 @@ import ProductDetailsPage, {
   loader as productDetailsLoader,
 } from "./pages/Product";
 import Cart from "./pages/Cart";
+import User from "./pages/User";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/shop", element: <Shop /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/user", element: <User /> },
       {
         path: "/:id",
         element: <ProductDetailsPage />,
