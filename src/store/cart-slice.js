@@ -1,21 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const storedCart = JSON.parse(localStorage.getItem('cart'));
+
 const cartSlice = createSlice({
     name: 'cart',
-    initialState: {
-        items: [],
-        totalQuantity: 0,
-        changed: false,
-    },
+    initialState: storedCart
+        ? {
+            items: storedCart.items,
+            totalQuantity: storedCart.totalQuantity,
+            changed: false,
+        }
+        : {
+            items: [],
+            totalQuantity: 0,
+            changed: false,
+        },
     reducers: {
-        // replaceCart(state, action) {
-
-        // },
         addItemToCart(state, action) {
             const newItem = action.payload;
             const existingItem = state.items.find((item) => item.id === newItem.id);
             state.totalQuantity++;
-            state.changed = true;
 
             if (!existingItem) {
                 state.items.push({
@@ -30,14 +34,13 @@ const cartSlice = createSlice({
                 existingItem.quantity = existingItem.quantity + newItem.quantity;
                 existingItem.totalPrice = existingItem.totalPrice + newItem.price;
             }
-            // console.log(state.items.length)
+            console.log(state.items)
         },
         removeItemFromCart(state, action) {
             const id = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
             console.log(state.items[0])
             state.totalQuantity--;
-            state.changed = true;
 
             if (existingItem.quantity === 1) {
                 state.items = state.items.filter((item) => item.id !== id);
@@ -47,7 +50,20 @@ const cartSlice = createSlice({
             }
         }
     }
-})
+});
+
+const cartLocalStorageMiddleware = (store) => (next) => (action) => {
+    const result = next(action);
+
+    if (action.type === 'cart/addItemToCart' || action.type === 'cart/removeItemFromCart') {
+        const cartState = store.getState().cart;
+        localStorage.setItem('cart', JSON.stringify(cartState));
+    }
+
+    return result;
+};
+
+export { cartLocalStorageMiddleware };
 
 export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
 

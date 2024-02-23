@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../store/cart-slice";
+import { selectIsLoggedIn } from "../store/user-slice";
 
 export default function ProductDetails({selectedProduct}) {
+
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
   const {id, title, price, image} = selectedProduct 
@@ -18,13 +23,20 @@ export default function ProductDetails({selectedProduct}) {
     } else setProductCount(e)
   }
     const handelAddItemToCart = () => {
-      dispatch(addItemToCart({
-        id,
-        title,
-        price,
-        quantity: +productCount,
-        image
-      }))
+console.log(isLoggedIn);
+      if (isLoggedIn) {
+        dispatch(addItemToCart({
+          id,
+          title,
+          price,
+          quantity: +productCount,
+          image
+        }))
+      } else {
+        navigate('/user')
+      }
+      
+      
       setProductCount(1)
     }
   return (

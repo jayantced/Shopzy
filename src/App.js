@@ -10,6 +10,7 @@ import ProductDetailsPage, {
 } from "./pages/Product";
 import Cart from "./pages/Cart";
 import User from "./pages/User";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/shop", element: <Shop /> },
-      { path: "/cart", element: <Cart /> },
+      { path: "/cart", element: <ProtectedRoute component={Cart} /> },
       { path: "/user", element: <User /> },
       {
         path: "/:id",

@@ -6,7 +6,7 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   const cartList = useSelector((state) => state.cart.items);
-
+console.log(cartList);
   const totalPrice = cartList?.reduce(
     ((price, item) => price + item.quantity * item.price),
     0
