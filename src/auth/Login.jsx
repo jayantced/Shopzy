@@ -1,6 +1,6 @@
 import { useState } from "react";
 import bcrypt from "bcryptjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../store/user-slice";
 
 const Login = () => {
@@ -16,19 +16,19 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    dispatch(login());
     const storedUser = JSON.parse(localStorage.getItem("user"));
-
+    
     if (!storedUser) {
       alert("User not found");
       return;
     }
-
+    
     if (
       storedUser.username === formData.username &&
       bcrypt.compareSync(formData.password, storedUser.password)
-    ) {
+      ) {
       alert("Login successful!");
+      dispatch(login());
     } else {
       alert("Invalid username or password");
     }
