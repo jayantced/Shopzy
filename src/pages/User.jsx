@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
 import SignupForm from '../auth/SignupForm';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Logout from '../auth/Logout';
 import Login from '../auth/Login';
-import { login, selectIsLoggedIn } from '../store/user-slice';
+import { selectIsLoggedIn } from '../store/user-slice';
 
 const User = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
     // const dispatch = useDispatch();
 
 //   useEffect(() => {
-//     // Dispatch the login action if the user is already logged in according to Redux state
 //     if (!isLoggedIn) {
 //       dispatch(login());
 //     }
@@ -25,7 +23,6 @@ const User = () => {
               {isLoggedIn ? (
                 <div className="text-center">
                   <h1 className="text-center mb-4">Welcome User!</h1>
-                  {/* Render protected content here */}
                   <Logout />
                 </div>
               ) : (

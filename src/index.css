@@ -738,3 +738,18 @@ input[type="text"] {
     transform: rotate(360deg);
   }
 } */
+
+.hero {
+  height: 520px;
+  overflow: hidden;
+  background-image: url(http://localhost:3000/static/media/herobanner.0f44e22395f96db9a121.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    height: 150px;
+  }
+}

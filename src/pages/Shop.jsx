@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Banner from "../components/Banner";
 import FilterSelect from "../components/FilterSelect";
-import { fetchProducts } from "../hooks/useHttps";
+import { fetchProducts } from "../utils/http";
 import { useEffect, useState } from "react";
 import ShopList from "../components/ShopList";
 import SearchBar from "../components/SearchBar";
@@ -38,11 +38,11 @@ export default function Shop() {
   
 
   return (
-    loader ? 
-    <>
-      <h3>Loading ..... </h3>
-    </> 
-    : 
+    // loader ? 
+    // <>
+    //   <h3>Loading ..... </h3>
+    // </> 
+    // : 
     <>
       <Banner title="product" />
       <section className="filter-bar">
@@ -57,7 +57,8 @@ export default function Shop() {
           </Row>
         </Container>
         <Container>
-          {filterList.length === 0 ? 
+          {/* {loader && <h1 className="not-found">Loading !!!</h1>} */}
+          {loader === 0 ? 
             <h1 className="not-found">No products found!</h1> 
             : 
             <ShopList productItems={filterList} />

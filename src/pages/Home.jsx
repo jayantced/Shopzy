@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
 import Section from "../components/Section";
-import { fetchProducts } from "../hooks/useHttps";
+import { fetchBestSalesProducts, fetchLatestProducts } from "../utils/http";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+  const [latestProducts, setLatestProducts] = useState([]);
+  const [bestSalesProducts, setBestSalesProducts] = useState([]);
 
   useEffect(() => {
+    async function fetchedLatestProducts() {
+      const fetchedLatestProducts = await fetchLatestProducts();
 
-    async function fetchAvailableProducts() {
-
-      const fetchedProducts = await fetchProducts();
-
-      setProducts(fetchedProducts);
+      setLatestProducts(fetchedLatestProducts);
     }
-    
-    fetchAvailableProducts();
 
+    fetchedLatestProducts();
+
+    async function fetchedBestSalesProducts() {
+      const fetchedLatestProducts = await fetchBestSalesProducts();
+
+      setBestSalesProducts(fetchedLatestProducts);
+    }
+
+    fetchedBestSalesProducts();
   }, []);
 
   // console.log(products)
   return (
     <>
-      <Section title="Big Discount" productItems={products} />
-      <Section
-        title="New Arrivals"
-        productItems={products}
-      />
+      <div className="hero"></div>
+      <Section title="Latest Additions" productItems={latestProducts} />
+      <Section title="Best Sales" productItems={bestSalesProducts} />
     </>
   );
 }

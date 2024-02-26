@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductDetails from "../components/ProductDetails";
 import { json, useLoaderData } from "react-router-dom";
-import { fetchProducts } from "../hooks/useHttps";
+import { fetchProducts } from "../utils/http";
 import Section from "../components/Section";
 
 export default function ProductDetailsPage() {

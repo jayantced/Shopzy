@@ -1,6 +1,6 @@
 import { useState } from "react";
 import bcrypt from "bcryptjs";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from "../store/user-slice";
 
 const Login = () => {

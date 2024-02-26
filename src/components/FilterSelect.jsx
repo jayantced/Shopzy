@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import { fetchProducts } from "../hooks/useHttps";
+import { fetchProducts } from "../utils/http";
 import { useEffect, useState } from "react";
 
 const options = [
