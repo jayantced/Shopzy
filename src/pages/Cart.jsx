@@ -1,17 +1,16 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart, removeItemFromCart } from "../store/cart-slice";
+import { addItemToCart, deleteItemFromCart, removeItemFromCart } from "../store/cart-slice";
 
 export default function Cart() {
   const dispatch = useDispatch();
 
   const cartList = useSelector((state) => state.cart.items);
-console.log(cartList);
+// console.log(cartList);
   const totalPrice = cartList?.reduce(
     ((price, item) => price + item.quantity * item.price),
     0
   );
-
   // console.log(cartList);
 
   return (
@@ -22,7 +21,7 @@ console.log(cartList);
             {cartList.length === 0 && (
               <h1 className="no-items product">No Items are add in Cart</h1>
             )}
-            {cartList.map((item) => {
+            {cartList?.map((item) => {
               const productQty = item.price * item.quantity;
               return (
                 <div className="cart-list" key={item.id}>
@@ -87,7 +86,7 @@ console.log(cartList);
                     </Col>
                     <button
                       className="delete"
-                      //   onClick={() => dispatch(deleteItemFromCart())}
+                        onClick={() => dispatch(deleteItemFromCart(item.id))}
                     >
                       <ion-icon name="close"></ion-icon>
                     </button>

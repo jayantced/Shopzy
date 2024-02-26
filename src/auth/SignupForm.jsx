@@ -21,13 +21,13 @@ const SignupForm = () => {
     e.preventDefault();
 
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-console.log(storedUser.username.toLowerCase());
-console.log(e.target.name.toLowerCase());
-if (storedUser.username.toLowerCase() === e.target.name.toLowerCase()) {
-      alert("User already exists. Please Login");
-      return;
-      }
+    // const storedUser = JSON.parse(localStorage.getItem("user"));
+// console.log(storedUser.username.toLowerCase());
+// console.log(e.target.name.toLowerCase());
+// if (storedUser.username.toLowerCase() === e.target.name.toLowerCase()) {
+//       alert("User already exists. Please Login");
+//       return;
+//       }
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords don't match");
       return;

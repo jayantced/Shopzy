@@ -7,19 +7,15 @@ const cartSlice = createSlice({
     initialState: storedCart
         ? {
             items: storedCart.items,
-            totalQuantity: storedCart.totalQuantity,
-            changed: false,
         }
         : {
             items: [],
-            totalQuantity: 0,
-            changed: false,
         },
     reducers: {
         addItemToCart(state, action) {
             const newItem = action.payload;
             const existingItem = state.items.find((item) => item.id === newItem.id);
-            state.totalQuantity++;
+            // state.totalQuantity++;
 
             if (!existingItem) {
                 state.items.push({
@@ -40,7 +36,7 @@ const cartSlice = createSlice({
             const id = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
             console.log(state.items[0])
-            state.totalQuantity--;
+            // state.totalQuantity--;
 
             if (existingItem.quantity === 1) {
                 state.items = state.items.filter((item) => item.id !== id);
@@ -48,6 +44,12 @@ const cartSlice = createSlice({
                 existingItem.quantity--;
                 existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
             }
+        },
+        deleteItemFromCart(state, action) {
+            const id = action.payload;
+            state.items = state.items.filter(
+                (item) => item.id !== id
+              );
         }
     }
 });
@@ -55,9 +57,13 @@ const cartSlice = createSlice({
 const cartLocalStorageMiddleware = (store) => (next) => (action) => {
     const result = next(action);
 
-    if (action.type === 'cart/addItemToCart' || action.type === 'cart/removeItemFromCart') {
-        const cartState = store.getState().cart;
-        localStorage.setItem('cart', JSON.stringify(cartState));
+    if (
+      action.type === "cart/addItemToCart" ||
+      action.type === "cart/removeItemFromCart" ||
+      action.type === "cart/deleteItemFromCart"
+    ) {
+      const cartState = store.getState().cart;
+      localStorage.setItem("cart", JSON.stringify(cartState));
     }
 
     return result;
@@ -65,6 +71,6 @@ const cartLocalStorageMiddleware = (store) => (next) => (action) => {
 
 export { cartLocalStorageMiddleware };
 
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, deleteItemFromCart } = cartSlice.actions;
 
 export default cartSlice;

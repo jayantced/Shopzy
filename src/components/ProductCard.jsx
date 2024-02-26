@@ -28,9 +28,9 @@ export default function ProductCard({ productItem }) {
       <Link to={`/${productItem.id}`}>
       <img src={productItem.image} />
       </Link>
-      <div className="product-like">
+      {/* <div className="product-like">
         <ion-icon name="heart-outline"></ion-icon>
-      </div>
+      </div> */}
       <div className="product-details">
       <Link to={`/${productItem.id}`}>
         <h3>{productItem.title}</h3>
